@@ -1,8 +1,6 @@
 {
   "scripts": {
     "build": "cd charity && cd frontend && npm run build",
-    "install-client": "cd frontend && npm install",
-    "heroku-postbuild": "npm run install-frontend && npm run build",
     "start": "node server.js"
   },
   "dependencies": {
