@@ -1,0 +1,9 @@
+JWT_SECRET= somethingsecret
+MONGODB_URI=mongodb+srv://CMS:CMS310599@cluster0.lgapts8.mongodb.net/CMS?retryWrites=true&w=majority
+NODE_ENV = development
+PORT = 5000
+CLOUDINARY_CLOUD_NAME=charitymanagementsystem
+CLOUDINARY_API_KEY=118472679137669
+CLOUDINARY_URL=cloudinary://118472679137669:vlnAMcByZv7w_Bf0kg57w4rGuSo@charitymanagementsystem
+CLOUDINARY_API_SECRET=vlnAMcByZv7w_Bf0kg57w4rGuSo
+PAYPAL_CLIENT_ID=AbCP68w48QNsmVohB8zrJVYLLE3juLQ60tTggSZdkqWCPSa2y0UDLOdl0brO3cwe98sFt6289oNfqOrH
