@@ -32,7 +32,7 @@ function PaymentDescriptionProject() {
   }
   return (
     <>
-      <CheckoutSteps> step1 </CheckoutSteps>
+      <CheckoutSteps step1></CheckoutSteps>
       <Row>
         <ListGroup variant="flush">
           <ListGroup.Item key={payment.project}>

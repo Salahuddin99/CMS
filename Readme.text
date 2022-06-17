@@ -1,0 +1,24 @@
+# CMS
+
+How to use
+1.First step go to the frontend
+
+ Frontend
+    1)Open the terminal
+    2)put 'cd charity'
+    3)put 'cd frontend'
+    4)run "npm install" on the terminal
+
+2.Second step go to backend
+
+  Backend
+     1) open the terminal 
+     2) put 'cd charity'
+     3) put 'cd frontend'
+     4) Run "npm install" on the terminal
+
+3. third step is to to backend and remove ".env.copy" to ".env"
+
+4. Last step is go to the terminal and run npm start for frontend and backend
+
+Happy coding....

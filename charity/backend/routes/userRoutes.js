@@ -37,17 +37,6 @@ userRouter.get(
   })
 )
 
-// userRouter.get(
-//   '/top-sellers',
-//   expressAsyncHandler(async (req, res) => {
-//     const userList = await User.find({ isSeller: true })
-//       .sort({ 'seller.rating': -1 })
-//       .limit(3);
-
-//     res.send(userList);
-//   })
-// );
-
 userRouter.delete(
   '/:id',
   isAuth,
@@ -66,24 +55,6 @@ userRouter.delete(
     }
   })
 )
-
-// userRouter.get(
-//   '/seed',
-//   expressAsyncHandler(async (req, res) => {
-//     // await User.remove({});
-//     // await Product.remove({});
-//     const createdUsers = await User.insertMany(users);
-//     const seller1 = createdUsers[0]._id;
-//     const seller2 = createdUsers[1]._id;
-//     const sampleProjects = Projects.map((product, index) =>
-//       index < 3
-//         ? { ...product, seller: seller1 }
-//         : { ...product, seller: seller2 }
-//     );
-//     const createdProjects = await Product.insertMany(sampleProjects);
-//     res.send({ users: createdUsers, Projects: createdProjects });
-//   })
-// );
 
 userRouter.put(
   '/profile',
@@ -149,19 +120,6 @@ userRouter.put(
   })
 )
 
-// userRouter.get(
-//   '/mine',
-//   isAuth,
-//   expressAsyncHandler(async (req, res) => {
-//     const user = await User.findById(req.user._id)
-//     if (user) {
-//       res.send(user)
-//     } else {
-//       res.status(404).send({ message: 'User Not Found' })
-//     }
-//   })
-// )
-
 userRouter.get(
   '/:id',
 
@@ -186,17 +144,6 @@ userRouter.put(
       user.email = req.body.email || user.email
       user.isAdmin = req.body.isAdmin || user.isAdmin
       user.isNGO = req.body.isNGO || user.isNGO
-      // user.nGO.companyName = req.body.nGO.companyName
-      // user.nGO.companylogo = req.body.nGO.companylogo
-      // user.nGO.description = req.body.nGO.description
-      // user.nGO.companyRegistrationNumber =
-      //   req.body.nGO.companyRegistrationNumber
-      // user.nGO.companyAddress = req.body.nGO.companyAddress
-      // user.nGO.yearFounded = req.body.nGO.yearFounded
-      // user.nGO.contactName = req.body.nGO.contactName
-      // user.nGO.emailAddress = req.body.nGO.emailAddress
-      // user.nGO.country = req.body.nGO.country
-      // user.nGO.telephoneNo = req.body.nGO.telephoneNo
 
       const updatedUser = await user.save()
       res.send({ message: 'User Succesfully updated', user: updatedUser })
@@ -230,51 +177,4 @@ userRouter.post(
   })
 )
 
-// userRouter.post(
-//   '/register',
-//   expressAsyncHandler(async (req, res) => {
-//     const user = new User({
-//       name: req.body.name,
-//       email: req.body.email,
-//       password: bcrypt.hashSync(req.body.password, 8),
-//     })
-//     const createdUser = await user.save()
-//     if (createdUser) {
-//       res.status(201).send({
-//         _id: createdUser._id,
-//         name: createdUser.name,
-//         email: createdUser.email,
-//         isAdmin: createdUser.isAdmin,
-//         isNGO: createdUser.isNGO,
-//         token: generateToken(createdUser),
-//       })
-//     } else {
-//       res.status(400).send({ message: 'Invalid User Data' })
-//     }
-//   })
-// )
-
-// userRouter.post(
-//   '/:id/reviews',
-//   isAuth,
-//   expressAsyncHandler(async (req, res) => {
-//     const user = await User.findById(req.params.id).populate('seller');
-//     if (user) {
-//       const review = {
-//         name: req.body.name,
-//         rating: Number(req.body.rating),
-//         comment: req.body.comment,
-//       };
-//       user.seller.reviews.push(review);
-//       user.seller.numReviews = user.seller.reviews.length;
-//       user.seller.rating =
-//         user.seller.reviews.reduce((a, c) => c.rating + a, 0) /
-//         user.seller.reviews.length;
-//       await user.save();
-//       res.status(201).send({ message: 'Review saved successfully' });
-//     } else {
-//       res.status(404).send({ message: 'Product Not Found' });
-//     }
-//   })
-// );
 export default userRouter

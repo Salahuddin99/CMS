@@ -128,12 +128,19 @@ export const ProfileScreen = () => {
     <Container className="small-container">
       <h1 className="my-3">Profile</h1>
       {message && <ErrorMessageBox variant="danger">{message}</ErrorMessageBox>}
-      {error && <ErrorMessageBox variant="danger">{error}</ErrorMessageBox>}
+      {error && (
+        <ErrorMessageBox variant="danger">
+          something went wrong! unable to update
+        </ErrorMessageBox>
+      )}
       {successupdate && (
         <ErrorMessageBox variant="success">Profile Updated</ErrorMessageBox>
       )}
       {errorUpdate && (
-        <ErrorMessageBox variant="danger">{errorUpdate}</ErrorMessageBox>
+        <ErrorMessageBox variant="danger">
+          {' '}
+          something went wrong! unable to update
+        </ErrorMessageBox>
       )}
       {loadingUpdate && <Loading></Loading>}
       {loading && <Loading />}

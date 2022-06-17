@@ -23,15 +23,19 @@ export default function ProjectScreen() {
   const projectDetails = useSelector((state) => state.projectDetails)
   const { project, loading, error } = projectDetails
   const [selectedImage, setSelectedImage] = useState('')
-  // const userLogin = useSelector((state) => state.userLogin)
-  // const { userInfo } = userLogin
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
 
   useEffect(() => {
     dispatch(detailsOfProject(projectId))
   }, [dispatch, projectId])
 
   const proceedToPay = () => {
-    navigate(`/payment_project/${projectId}`)
+    if (!userInfo) {
+      navigate('/signin')
+    } else {
+      navigate(`/payment_project/${projectId}`)
+    }
   }
   return loading ? (
     <Loading />

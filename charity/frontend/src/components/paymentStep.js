@@ -6,13 +6,20 @@ export default function CheckoutSteps(props) {
     <Nav className="justify-content-center">
       <Nav.Item>
         {props.step1 ? (
+          <Nav.Link>Project Description</Nav.Link>
+        ) : (
+          <Nav.Link disabled>ProjectDescription</Nav.Link>
+        )}
+      </Nav.Item>
+      <Nav.Item>
+        {props.step2 ? (
           <Nav.Link>Payment Description</Nav.Link>
         ) : (
           <Nav.Link disabled>PaymentDescription</Nav.Link>
         )}
       </Nav.Item>
       <Nav.Item>
-        {props.step2 ? (
+        {props.step3 ? (
           <Nav.Link>Payment</Nav.Link>
         ) : (
           <Nav.Link disabled>Payment</Nav.Link>

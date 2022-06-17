@@ -5,38 +5,6 @@ import { isAuth, isAdmin, isNGO, isNGOorAdmin } from '../utils.js'
 
 const projectRouter = express.Router()
 
-// projectRouter.post(
-//   '/',
-//   isAuth,
-//   isNGO,
-//   expressAsyncHandler(async (req, res) => {
-//     const project = new Charity({
-//       nGO: req.user._id,
-//       name: 'Sample Name' + Date.now(),
-//       by: 'sample by',
-//       category: 'Sample Category',
-//       image: '/images/p1.jpg',
-//       donationGoal: 0,
-//       currentdonation: 0,
-//       location: 'sample Name',
-//       description: 'Sample Description',
-//       Challenge: 'sample Challenge',
-//       Solution: 'sample Solution',
-//       longTermImpact: 'sample LongTermImpact',
-//       additionalDocumentation: 'sample additionalDocumentation',
-//       companyRegistrationNumber: 0,
-//       companyAddress: 'sample companyAddress',
-//       yearFounded: 0,
-//       contactName: 'sample contactName',
-//       emailAddress: 'sample emailAddress',
-//       country: 'sample country',
-//       telephoneNo: 0,
-//     })
-//     const createdProject = await project.save()
-//     res.send({ message: 'Project Created', project: createdProject })
-//   })
-// )
-
 projectRouter.post(
   '/create',
   isAuth,
@@ -57,42 +25,11 @@ projectRouter.post(
       Solution: req.body.Solution,
       longTermImpact: req.body.longTermImpact,
       additionalDocumentation: 'sample documentation',
-      // companyRegistrationNumber: req.body.companyRegistrationNumber,
-      // companyAddress: req.body.companyAddress,
-      // yearFounded: req.body.yearFounded,
-      // contactName: req.body.contactName,
-      // emailAddress: req.body.emailAddress,
-      // country: req.body.country,
-      // telephoneNo: req.body.telephoneNo,
     })
     const createdProject = await project.save()
     res.send({ message: 'Project Created', project: createdProject })
   })
 )
-
-// userRouter.post(
-//   '/register',
-//   expressAsyncHandler(async (req, res) => {
-//     const user = new User({
-//       name: req.body.name,
-//       email: req.body.email,
-//       password: bcrypt.hashSync(req.body.password, 8),
-//     })
-//     const createdUser = await user.save()
-//     if (createdUser) {
-//       res.status(201).send({
-//         _id: createdUser._id,
-//         name: createdUser.name,
-//         email: createdUser.email,
-//         isAdmin: createdUser.isAdmin,
-//         isNGO: user.isNGO,
-//         token: generateToken(createdUser),
-//       })
-//     } else {
-//       res.status(400).send({ message: 'Invalid User Data' })
-//     }
-//   })
-// )
 
 projectRouter.put(
   '/:id',
@@ -102,6 +39,7 @@ projectRouter.put(
     const project = await Charity.findById(req.params.id)
     if (project) {
       project.name = req.body.name
+      project.by = req.body.by
       project.category = req.body.category
       project.image = req.body.image
       project.images = req.body.images
@@ -146,10 +84,6 @@ projectRouter.get(
   '/:id',
   expressAsyncHandler(async (req, res) => {
     const project = await Charity.findById(req.params.id)
-    // .populate(
-    //   'nGO',
-    //   '_id nGO.name nGO.logo '
-    // )
     res.send(project)
   })
 )
@@ -168,29 +102,5 @@ projectRouter.delete(
     }
   })
 )
-
-// projectRouter.post(
-//   '/:id/reviews',
-//   isAuth,
-//   expressAsyncHandler(async (req, res) => {
-//     const product = await Charity.findById(req.params.id)
-//     if (product) {
-//       const review = {
-//         name: req.body.name,
-//         rating: Number(req.body.rating),
-//         comment: req.body.comment,
-//       }
-//       product.reviews.push(review)
-//       product.numReviews = product.reviews.length
-//       product.rating =
-//         product.reviews.reduce((a, c) => c.rating + a, 0) /
-//         product.reviews.length
-//       await product.save()
-//       res.status(201).send({ message: 'Review saved successfully' })
-//     } else {
-//       res.status(404).send({ message: 'Product Not Found' })
-//     }
-//   })
-// )
 
 export default projectRouter

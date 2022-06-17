@@ -26,6 +26,21 @@ paymentRoute.get(
   })
 )
 
+paymentRoute.delete(
+  '/:id',
+  isAuth,
+  isAdmin,
+  expressAsyncHandler(async (req, res) => {
+    const donate = await Donate.findById(req.params.id)
+    if (donate) {
+      const deletedonation = await donate.remove()
+      res.send({ message: 'Donation deleted', donate: deletedonation })
+    } else {
+      res.status(404).send({ message: 'Donation Not Found' })
+    }
+  })
+)
+
 paymentRoute.get(
   '/:id',
   isAuth,
@@ -56,18 +71,4 @@ paymentRoute.post(
   })
 )
 
-paymentRoute.delete(
-  '/:id',
-  isAuth,
-  isAdmin,
-  expressAsyncHandler(async (req, res) => {
-    const donate = await Donate.findById(req.params.id)
-    if (donate) {
-      const deletedonation = await donate.remove()
-      res.send({ message: 'Donation deleted', donate: deletedonation })
-    } else {
-      res.status(404).send({ message: 'Donation Not Found' })
-    }
-  })
-)
 export default paymentRoute

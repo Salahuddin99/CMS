@@ -227,7 +227,7 @@ export default function StartAProjectScreen() {
           ></Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit" className="mt-4">
-          Update
+          Submit
         </Button>{' '}
       </Form>
     </Container>

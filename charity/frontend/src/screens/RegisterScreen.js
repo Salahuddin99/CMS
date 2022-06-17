@@ -42,7 +42,11 @@ export const RegisterScreen = () => {
     <Container className="small-container">
       <h1 className="my-3">Sign Up</h1>
       {message && <ErrorMessageBox variant="danger">{message}</ErrorMessageBox>}
-      {error && <ErrorMessageBox variant="danger">{error}</ErrorMessageBox>}
+      {error && (
+        <ErrorMessageBox variant="danger">
+          Email address have been taken,sign in instead
+        </ErrorMessageBox>
+      )}
       {loading && <Loading />}
       <Form onSubmit={submitHandler}>
         <Form.Group className="mb-3" controlId="name">
